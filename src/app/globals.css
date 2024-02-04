@@ -1,27 +1,29 @@
-:root{
+:root {
     --bg: #0d0c22;
     --bgSoft: #2d2b42;
     --text: white;
     --textSoft: #e5e5e5;
     --btn: #3673fd;
-    --btn-bg: rgb(8, 8, 50);
-}
-
-*{
+  }
+  
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-body{
+  }
+  
+  body {
     background-color: var(--bg);
     color: var(--text);
-}
-a{
+  
+  }
+  
+  a {
     text-decoration: none;
     color: inherit;
-}
-.container{
-    background-color: var(--bg);
+  }
+  
+  .container {
     width: 1536px;
     margin: auto;
     padding-left: 50px;
@@ -30,43 +32,47 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-}
-
-@media (max-width: 1536px) {
-    .container{
-        width: 1366px;
+  }
+  
+  @media (max-width: 1536px) {
+    .container {
+      width: 1366px;
     }
-}
-
-@media (max-width: 1366px) {
-    .container{
-        width: 1280px;
+  }
+  
+  @media (max-width: 1366px) {
+    .container {
+      width: 1280px;
     }
-}
-
-@media (max-width: 1280px) {
-    .container{
-        width: 1024px;
-        padding-left: 20px;
-        padding-right: 20px;
+  }
+  
+  @media (max-width: 1280px) {
+    .container {
+      width: 1024px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
-}
-
-@media (max-width: 1024px) {
-    .container{
-        width: 768px;
+  }
+  
+  @media (max-width: 1024px) {
+    .container {
+      width: 768px;
     }
-}
-
-@media (max-width: 768px) {
-    .container{
-        width: 640px;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 640px;
     }
-}
-
-@media (max-width: 640px) {
-    .container{
-        width: 475px;
+  }
+  
+  @media (max-width: 640px) {
+    .container {
+      width: 475px;
     }
-}
+  }
+  @media (max-width: 475px) {
+    .container {
+      width: 380px;
+    }
+  }
