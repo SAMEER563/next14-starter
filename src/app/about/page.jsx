@@ -1,6 +1,8 @@
 import Image from "next/image";
 import styles from "./about.module.css";
 const AboutPage = () => {
+
+  // console.log("lets check where its work")
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
