@@ -2,9 +2,9 @@ import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
-import bcrypt from "bcryptjs";
 import { User } from "./models";
-
+import bcrypt from "bcryptjs";
+import { authConfig } from "./auth.config";
 
 const login = async (credentials) => {
   try {
@@ -29,12 +29,11 @@ const login = async (credentials) => {
 
 export const {
   handlers: { GET, POST },
-
-
   auth,
   signIn,
   signOut,
 } = NextAuth({
+  ...authConfig,
   providers: [
     GitHub({
       clientId: process.env.GITHUB_ID,
@@ -52,28 +51,28 @@ export const {
     }),
   ],
   callbacks: {
-    async signIn({user, account, profile}) {
-      console.log(user,account,profile)
-     if (account.provider === "github") {
-      connectToDb()
-      try {
-       const user = await User.findOne({email: profile.email})
+    async signIn({ user, account, profile }) {
+      if (account.provider === "github") {
+        connectToDb();
+        try {
+          const user = await User.findOne({ email: profile.email });
 
-       if(!user){
-        const newUser = new User({
-          username: profile.login,
-          email: profile.email,
-          image: profile.image,
-        });
+          if (!user) {
+            const newUser = new User({
+              username: profile.login,
+              email: profile.email,
+              image: profile.avatar_url,
+            });
 
-        await newUser.save();
-       }
-      } catch (err) {
-        console.log(err)
-        return false;
+            await newUser.save();
+          }
+        } catch (err) {
+          console.log(err);
+          return false;
+        }
       }
-     }
-     return true;
-    }
-  }
+      return true;
+    },
+    ...authConfig.callbacks,
+  },
 });
